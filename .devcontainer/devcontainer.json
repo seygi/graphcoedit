@@ -1,0 +1,12 @@
+{
+    "name": "Node.js Development",
+    "dockerComposeFile": "docker-compose.yaml",
+    "service": "backend",
+    "workspaceFolder": "/app",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+            ]
+        }
+    }
+}

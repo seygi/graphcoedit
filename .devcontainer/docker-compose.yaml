@@ -1,0 +1,36 @@
+version: '3'
+services:
+  backend:
+    entrypoint: 
+    - sleep
+    - infinity
+    build:
+      context: ../BackEnd
+      dockerfile: Dockerfile
+    ports:
+      - 4040:4040
+    volumes:
+      - ../BackEnd:/app
+    depends_on:
+      - database
+
+  # frontend:
+  #   build:
+  #     context: ../FrontEnd
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 8080:8080
+  #   volumes:
+  #     - ../FrontEnd:/app
+  #   depends_on:
+  #     - backend
+
+  database:
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
