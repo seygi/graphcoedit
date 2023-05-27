@@ -1,31 +1,27 @@
-import { Schema, model, Document } from 'mongoose';
+import { Schema, model } from "mongoose";
 
-export interface INode extends Document {
-  prev: Schema.Types.ObjectId | null;
-  next: Schema.Types.ObjectId | null;
+export interface INode {
+  prev: Schema.Types.ObjectId | null,
+  next: Schema.Types.ObjectId | null
 }
 
 const NodeSchema = new Schema<INode>({
   prev: {
     type: Schema.Types.ObjectId,
-    default: null,
-    ref: 'Node',
+    default: null
   },
   next: {
     type: Schema.Types.ObjectId,
-    default: null,
-    ref: 'Node',
-  },
+    default: null
+  }
 });
 
-NodeSchema.set('toJSON', {
+NodeSchema.set("toJSON", {
   virtuals: true,
   versionKey: false,
   transform(doc, ret) {
     delete ret._id;
-  },
+  }
 });
 
-const NodeModel = model<INode>('Node', NodeSchema);
-
-export default NodeModel;
+export default model<INode>("Node", NodeSchema);
